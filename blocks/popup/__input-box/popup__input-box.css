@@ -1,0 +1,6 @@
+.popup__input-box {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    box-sizing: border-box;
+}

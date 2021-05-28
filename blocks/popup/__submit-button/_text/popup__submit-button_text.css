@@ -1,0 +1,15 @@
+.popup__submit-button_text {
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 1.2;
+    text-align: center;
+    color: #FFFFFF;
+}
+
+@media (max-width: 590px) {
+    .popup__submit-button_text {
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 1.2;
+    }
+}

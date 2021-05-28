@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Место</title>
+    <link rel="stylesheet" href="pages/index.css">
+</head>
+<body>
+
+    <div class="page">
+
+        <header class="header page__container">
+            <img class="logo" src="./images/mesto_logo.svg" alt="Место">
+        </header>
+
+
+        <main class="content page__container">
+            <section class="profile">
+                <img class="profile__avatar" src="./images/Avatar.jpg" alt="Аватар">
+                <div class="profile-info">
+                    <div class="profile-info__edit-name">
+                        <h1 class="profile-info__name">Жак-Ив Кусто</h1>
+                        <button class="profile-info__edit-button"></button>
+                    </div>
+                    <p class="profile-info__occupation">Исследователь океана</p>
+                </div>
+                <button class="profile__add-button"></button>
+            </section>
+
+            <section class="elements">
+                <article class="element">
+                    <img class="element__image" src="./images/karachaevsk.jpg" alt="Карачаевск">
+                    <div class="element-subscribe">
+                        <h2 class="element-subscribe__title">Карачаевск</h2>
+                        <button class="element-subscribe__like-button"></button>
+                    </div>
+                </article>
+
+                <article class="element">
+                    <img class="element__image" src="./images/elbrus.jpg" alt="Гора Эльбрус">
+                    <div class="element-subscribe">
+                        <h2 class="element-subscribe__title">Гора Эльбрус</h2>
+                        <button class="element-subscribe__like-button"></button>
+                    </div>
+                </article>
+
+                <article class="element">
+                    <img class="element__image" src="./images/Dombai.jpg" alt="Домбай">
+                    <div class="element-subscribe">
+                        <h2 class="element-subscribe__title">Домбай</h2>
+                        <button class="element-subscribe__like-button"></button>
+                    </div>
+                </article>
+
+                <article class="element">
+                    <img class="element__image" src="./images/teleckoeOzero.jpg" alt="Телецкое озеро">
+                    <div class="element-subscribe">
+                        <h2 class="element-subscribe__title">Телецкое озеро</h2>
+                        <button class="element-subscribe__like-button"></button>
+                    </div>
+                </article>
+
+                <article class="element">
+                    <img class="element__image" src="./images/kamchatka.jpg" alt="Камчатка">
+                    <div class="element-subscribe">
+                        <h2 class="element-subscribe__title">Камчатка</h2>
+                        <button class="element-subscribe__like-button"></button>
+                    </div>
+                </article>
+
+                <article class="element">
+                    <img class="element__image" src="./images/Cherkesija.jpg" alt="Карачаево-Черкесия">
+                    <div class="element-subscribe">
+                        <h2 class="element-subscribe__title">Карачаево-Черкесия</h2>
+                        <button class="element-subscribe__like-button"></button>
+                    </div>
+                </article>
+            </section>
+        </main>
+
+
+        <footer class="footer page__container">
+            <p class="footer__copyright">© 2020 Mesto Russia</p>
+        </footer>
+    </div>
+
+    <section class="popup">
+        <div class="popup__container">
+            <button class="popup__close-icon" type="button"></button>
+            <h2 class="popup__edit-profile">Редактировать профиль</h2>
+            <form class="popup__form">
+                <div class="popup__input-box">
+                    <input class="popup__input popup__input_name" type="text" name="name" value="Жак-Ив Кусто">
+                    <input class="popup__input popup__input_occupation" type="text" name="occupation" value="Исследователь океана">
+                </div>
+                <button class="popup__submit-button popup__submit-button_text" type="submit" value="Сохранить">Сохранить</button>               
+            </form>
+        </div>
+    </section>
+
+    <script src="./index.js" defer></script>
+</body>
+</html>

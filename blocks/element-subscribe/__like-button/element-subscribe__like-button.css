@@ -1,0 +1,21 @@
+.element-subscribe__like-button {
+    background-image: url(../../../images/like-button.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: #FFFFFF;
+    align-self: center;
+    box-sizing: border-box;
+    border: none;
+    width: 24px;
+    height: 19px;
+    cursor: pointer;
+}
+
+.element-subscribe__like-button:hover {
+    opacity: .5;
+}
+
+.element-subscribe__like-button:active {
+    background-image: url(../../../images/like-button_active.svg);
+    opacity: 1;
+}

@@ -1,0 +1,7 @@
+.content {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    justify-items: center;
+    box-sizing: border-box;
+}

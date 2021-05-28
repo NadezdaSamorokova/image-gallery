@@ -30,4 +30,4 @@
 * Figma
 * Git Bush
 
-[Место] 
+[Место] (https://nadezdasamorokova.github.io/mesto/)

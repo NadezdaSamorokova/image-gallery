@@ -1,8 +1,12 @@
 .profile-info__occupation {
+    max-width: 336px;
     font-weight: 400;
     font-size: 18px;
     line-height: 1.2;
     margin: 16px 0 0;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 @media (max-width: 870px) {
@@ -19,6 +23,7 @@
 
 @media (max-width: 590px) {
     .profile-info__occupation {
+        max-width: 282px;
         justify-self: center;
         margin: 14px 0 0;
     }

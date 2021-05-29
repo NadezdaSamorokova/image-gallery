@@ -5,11 +5,12 @@
     align-self: center;
     box-sizing: border-box;
     border: 1px solid #FFFFFF;
-    border-radius: 2px;
+    border-radius: 1px;
     background-color: #000000;
     width: 24px;
     height: 24px;
     cursor: pointer;
+    padding: 0;
 }
 
 .profile-info__edit-button:hover {

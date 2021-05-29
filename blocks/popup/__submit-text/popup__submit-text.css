@@ -1,4 +1,4 @@
-.popup__submit-button_text {
+.popup__submit-text {
     font-weight: 400;
     font-size: 18px;
     line-height: 1.2;
@@ -7,7 +7,7 @@
 }
 
 @media (max-width: 590px) {
-    .popup__submit-button_text {
+    .popup__submit-text {
         font-weight: 400;
         font-size: 14px;
         line-height: 1.2;

@@ -5,10 +5,12 @@
     background-color: #FFFFFF;
     align-self: center;
     box-sizing: border-box;
+    background-size: contain;
     border: none;
-    width: 24px;
+    min-width: 22px;
     height: 19px;
     cursor: pointer;
+    padding: 0;
 }
 
 .element-subscribe__like-button:hover {

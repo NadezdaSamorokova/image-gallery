@@ -12,7 +12,7 @@
     }
 }
 
-@media (max-width: 590px) {
+@media (max-width: 688px) {
     .profile {
         flex-direction: column;
         width: calc(100% - 38px);

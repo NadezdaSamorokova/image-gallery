@@ -19,6 +19,7 @@
 @media (max-width: 723px) {
     .profile-info__name {
         font-size: 27px;
+        max-width: 248px;
     }
 }
 

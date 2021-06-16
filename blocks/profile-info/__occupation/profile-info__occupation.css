@@ -18,10 +18,11 @@
 @media (max-width: 723px) {
     .profile-info__occupation {
         font-size: 14px;
+        max-width: 290px;
     }
 }
 
-@media (max-width: 590px) {
+@media (max-width: 688px) {
     .profile-info__occupation {
         max-width: 282px;
         justify-self: center;

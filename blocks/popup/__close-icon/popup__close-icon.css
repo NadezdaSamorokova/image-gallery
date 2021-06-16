@@ -24,3 +24,9 @@
     height: 26px;
   }
 }
+
+@media (max-width: 320px) {
+  .popup__close-icon {
+    background-image: url(../../../images/Close_icon_s.svg);
+  }
+}

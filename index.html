@@ -60,7 +60,7 @@
             <h2 class="popup__title">Новое место</h2>
             <form class="popup__form" name="popupImageForm">
                 <fieldset class="popup__input-box">
-                    <input class="popup__input popup__input-text popup__title" type="text" name="title" value="Название">
+                    <input class="popup__input popup__input-text popup__title-text" type="text" name="title" value="Название">
                     <input class="popup__input popup__input-text popup__link" type="url" name="link" value="Ссылка на картинку">
                 </fieldset>
                 <button class="popup__submit-button popup__submit-text" type="submit" value="Создать">Создать</button>               
@@ -78,10 +78,12 @@
 
     <template id="element-template">
         <li class="element">
-            <img src="" alt="" class="element__image">
-            <h2 class="element__title"></h2>
-            <button type="button" class="element__button-like"></button>
             <button type="button" class="element__button-delete"></button>
+            <img src="" alt="" class="element__image">
+            <div class="element__discription">
+                <h2 class="element__title"></h2>
+                <button type="button" class="element__button-like"></button> 
+            </div>
         </li>   
     </template>
 

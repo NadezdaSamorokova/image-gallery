@@ -10,6 +10,16 @@ const jobInput = profilePopup.querySelector('.popup__occupation');
 const profileName = document.querySelector('.profile-info__name');
 const profileOccupation = document.querySelector('.profile-info__occupation');
 
+//функция открытия попапа
+function popupOpened(popup) {
+  popup.classList.add('popup_opened');
+}
+
+//функция закрытия попапа
+function popupClosed(popup) {
+  popup.classList.remove('popup_opened');
+}
+
 //функция изменения иформации в профиле
 function editProfilePopup (evt) {
   evt.preventDefault();
@@ -34,90 +44,18 @@ closeProfilePopup.addEventListener('click',() => {
 });
 
 
-
 //переменнные для попапа с добавлением карточки
-const imageAddPopup = document.querySelector('.popup_type_add');
-const openImageAddPopup = document.querySelector('.profile__add-button');
-const closeImageAddPopup = imageAddPopup.querySelector('.popup__close-icon');
-const imageFormElement = imageAddPopup.querySelector('.popup__form');
-const titleInput = imageAddPopup.querySelector('.popup__title');
-const linkInput = imageAddPopup.querySelector('.popup__link');
-const imageTitle = document.querySelector('.element__title');
-const imageLink = document.querySelector('.element__image');
-
-//функция изменения иформации для добавленния новой картинки
-function addNewImage (evt) {
-  evt.preventDefault();
-  imageTitle.textContent = titleInput.value;
-  linkInput.textContent = linkInput.value;
-  imageAddPopup.classList.toggle('popup_opened');
-}
-
-//функция передачи заполненной информации для добавленния картинки
-function addImageSubmit (evt) {
-  evt.preventDefault(); 
-  titleInput.value = imageTitle.textContent;
-  linkInput.value = imageLink.textContent;
-  imageAddPopup.classList.toggle('popup_opened');
-}
-
-//слушатели для попапа с добавлением картинки
-openImageAddPopup.addEventListener('click', addNewImage);
-imageFormElement.addEventListener('click', addImageSubmit);
-closeImageAddPopup.addEventListener('click',() => {
-  popupClosed(imageAddPopup);
-});
-
-
-
-//переменнные для создания картинок
-const elementTemplate = document.querySelector('#element-template').content;
-const imageElement = elementTemplate.querySelector('.element').cloneNode('true');
-const elementImage = elementTemplate.querySelector('.element__image');
-const elementTitle = elementTemplate.querySelector('.element__title');
-const elementButtonlike = elementTemplate.querySelector('.element__button-like');
-const elementButtonDelete = elementTemplate.querySelector('.element__button-delete');
-
-const imagePopup = document.querySelector('.popup_type_image');
-const imagePopupImage = imagePopup.querySelector('.popup__image');
-const imagePopupText = imagePopup.querySelector('.popup__caption');
-const closeimagePopup = imagePopup.querySelector('.popup__close-icon');
-
-
-
-function createImage (card) {
-  evt.preventDefault(); 
-  imagePopupImage.setAttribute('src', card.link);
-  imagePopupImage.setAttribute('alt', card.name);
-  elementTitle.textContent = card.name;
-  imagePopup.classList.toggle('popup_opened');
-}
-
-function editImagePopup (card) {
-  elementImage.setAttribute('src', card.link);
-  elementImage.setAttribute('alt', card.name);
-  elementTitle.textContent = card.name;
-
-  return imageElement;
-}
-
-
-
-
-
-
-
-
-//функция открытия попапа
-function popupOpened(popup) {
-  popup.classList.add('popup_opened');
-}
-
-//функция закрытия попапа
-function popupClosed(popup) {
-  popup.classList.remove('popup_opened');
-}
-
+const addPopup = document.querySelector('.popup_type_add');
+const openAddPopup = document.querySelector('.profile__add-button');
+const closeAddPopup = addPopup.querySelector('.popup__close-icon');
+/*const addPopupTitleInput = addPopup.querySelector('.popup__title-text');*/
+/*const addPopupLinkInput = addPopup.querySelector('.popup__link');*/
+/*const elementImage = elementTemplate.querySelector('.element__image');*/
+/*const elementTitle = elementTemplate.querySelector('.element__title');*/
+/*const imageElement = elementTemplate.querySelector('.element').cloneNode('true');*/
+/*const elementButtonlike = elementTemplate.querySelector('.element__button-like');*/
+/*const elementButtonDelete = elementTemplate.querySelector('.element__button-delete');*/
+/*const imageFormElement = addPopup.querySelector('.popup__form');*/
 
 
 //массив картинок
@@ -147,3 +85,59 @@ const initialCards = [
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
   }
 ]; 
+
+
+
+//переменнные для создания карточек
+const imagePopup = document.querySelector('.popup_type_image');
+const imagePopupImage = imagePopup.querySelector('.popup__image');
+const imagePopupText = imagePopup.querySelector('.popup__caption');
+const closeImagePopup = imagePopup.querySelector('.popup__close-icon');
+
+//переменные для темплейта
+const elementList = document.querySelector('.elements__list');
+
+const cardContainer = document.querySelector('.elements__list');
+const imageFormElement = addPopup.querySelector('.popup__form');
+const elementTemplate = document.querySelector('#element-template').content;
+
+const renderCard = (card) => {
+  const imageElement = elementTemplate.cloneNode('true');
+  const elementImage = elementTemplate.querySelector('.element__image');
+  elementImage.textContent = card.link;
+  const elementTitle = elementTemplate.querySelector('.element__title');
+  elementTitle.textContent = card.name;
+
+  /*const elementLikeButton = elementTemplate.querySelector('.element__button-like');
+  elementLikeButton.addEventListener('click', () => {
+    evt.currentTarget.classList.toggle('element__button-heart_active');
+  });
+
+  const elementButtonDelete = elementTemplate.querySelector('.element__button-delete');
+  elementButtonDelete.addEventListener('click', (evt) => {
+    evt.target.closest('.element').remove();
+  });*/
+
+  cardContainer.prepend(imageElement);
+};
+
+initialCards.forEach(renderCard);
+
+const addCard = (evt) => {
+  evt.preventDefault();
+  
+  const addPopupTitleInput = evt.target.querySelector('.popup__title-text');
+  const addPopupLinkInput = evt.target.querySelector('.popup__link');
+
+  const cardData = {
+    name: addPopupTitleInput.value,
+    link: addPopupLinkInput.value
+  };
+
+  renderCard(cardData);
+
+  addPopupTitleInput.value = '';
+  addPopupLinkInput.value = '';
+};
+
+imageFormElement.addEventListener('submit', addCard);

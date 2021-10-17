@@ -3,7 +3,7 @@
     position: relative;
     flex-direction: row;
     align-content: center;
-    justify-content: center;
+    justify-content: center                                                 ;
     box-sizing: border-box;
 }
 
@@ -18,4 +18,4 @@
         flex-direction: column;
         width: calc(100% - 38px);
     }
-}
+}                                                                                                                                    

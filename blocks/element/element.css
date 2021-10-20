@@ -8,6 +8,5 @@
     box-sizing: border-box;
     border-radius: 10px;
     overflow: hidden;
-    cursor: pointer;
-    transition: opacity .5s;
+    
 }

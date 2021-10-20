@@ -3,6 +3,7 @@
     height: 100%;
     object-fit: cover;
     min-height: 282px;
+    cursor: pointer;
 }
 
 @media (max-width: 723px) {

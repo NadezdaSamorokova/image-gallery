@@ -5,9 +5,3 @@
     min-height: 282px;
     cursor: pointer;
 }
-
-@media (max-width: 723px) {
-    .element__image {
-        border-radius: 20px 20px 0px 0px;
-    }
-}

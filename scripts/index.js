@@ -26,7 +26,6 @@ const initialCards = [
   }
 ]; 
 
-const popup = document.querySelector('.popup'); //основной попап
 //переменнные для попапа с изменением имени профиля
 const profilePopup = document.querySelector('.popup_type_edit');
 const openProfilePopup = document.querySelector('.profile-info__edit-button');
@@ -62,10 +61,9 @@ function popupClosed(popup) {
 
 //функция изменения иформации в профиле
 function editProfilePopup (evt) {
-  evt.preventDefault();
   nameInput.value = profileName.textContent;
   jobInput.value = profileOccupation.textContent;
-  profilePopup.classList.toggle('popup_opened');
+  popupOpened(profilePopup);
 }
 
 //функция передачи заполненной информации профиля
@@ -73,7 +71,7 @@ function editFormSubmitHandler (evt) {
   evt.preventDefault(); 
   profileName.textContent = nameInput.value;
   profileOccupation.textContent = jobInput.value;
-  profilePopup.classList.toggle('popup_opened');
+  popupClosed(profilePopup);
 }
 
 //функция для воспроизведения карточки
@@ -93,7 +91,7 @@ function renderCard(card) {
     imagePopupImage.src = card.link;
     imagePopupImage.alt = card.name;
     imagePopupText.textContent = card.name;
-    imagePopup.classList.toggle('popup_opened');
+    popupOpened(imagePopup);
   };
 
   //слушатели на кнопку удаления карточки и 
@@ -125,7 +123,7 @@ function addFormSubmitHandler (evt) {
 
   addCard(addPopupInput, cardList);
   imageFormElement.reset();
-  addPopup.classList.toggle('popup_opened');
+  popupClosed(addPopup);
 };
 
 //аргумент для перебора масства

@@ -49,14 +49,35 @@ const imagePopupImage = imagePopup.querySelector('.popup__image');
 const imagePopupText = imagePopup.querySelector('.popup__caption');
 const closeImagePopup = imagePopup.querySelector('.popup__close-icon');
 
-//функция открытия попапа
+
+//функция открытия попапа 
 function popupOpened(popup) {
   popup.classList.add('popup_opened');
+  document.addEventListener('mousedown', closePopupOverlay);
+  document.addEventListener('keydown', closePopupEscape);
 }
 
 //функция закрытия попапа
 function popupClosed(popup) {
   popup.classList.remove('popup_opened');
+  document.removeEventListener('mousedown', closePopupOverlay);
+  document.removeEventListener('keydown', closePopupEscape);
+}
+
+// Функция закрытия попапа по оверлею 
+const closePopupOverlay = function(evt) {
+  const popupOpened = document.querySelector('.popup_opened');
+      if(evt.target === popupOpened) {
+        popupClosed(popupOpened);
+      }
+}
+
+// Функция закрытия попапа нажатием на Esc
+const closePopupEscape = function(evt) {
+  if(evt.key === 'Escape') {
+    const popupOpened = document.querySelector('.popup_opened');
+    popupClosed(popupOpened);
+  }
 }
 
 //функция изменения иформации в профиле

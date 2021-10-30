@@ -49,6 +49,8 @@ const imagePopupImage = imagePopup.querySelector('.popup__image');
 const imagePopupText = imagePopup.querySelector('.popup__caption');
 const closeImagePopup = imagePopup.querySelector('.popup__close-icon');
 
+const esc = 'Escape';
+
 
 //функция открытия попапа 
 function popupOpened(popup) {
@@ -74,7 +76,7 @@ const closePopupOverlay = function(evt) {
 
 // Функция закрытия попапа нажатием на Esc
 const closePopupEscape = function(evt) {
-  if(evt.key === 'Escape') {
+  if(evt.key === esc) {
     const popupOpened = document.querySelector('.popup_opened');
     popupClosed(popupOpened);
   }

@@ -49,6 +49,7 @@ const imagePopupImage = imagePopup.querySelector('.popup__image');
 const imagePopupText = imagePopup.querySelector('.popup__caption');
 const closeImagePopup = imagePopup.querySelector('.popup__close-icon');
 
+const cardTemplate = document.querySelector('#element-template').content.querySelector('.element');
 const esc = 'Escape';
 
 
@@ -99,31 +100,17 @@ function editFormSubmitHandler (evt) {
 
 //функция для воспроизведения карточки
 function renderCard(card) {
-  const cardTemplate = document.querySelector('#element-template').content;
-  const cardElement = cardTemplate.querySelector('.element').cloneNode(true);
+  const cardElement = cardTemplate.cloneNode(true);
   const elementImage = cardElement.querySelector('.element__image');
   const elementTitle = cardElement.querySelector('.element__title');
-  const elementLikeButton = cardElement.querySelector('.element__button-like');
-  const elementButtonDelete = cardElement.querySelector('.element__button-delete');
   elementImage.src = card.link;
   elementImage.alt = card.name;
   elementTitle.textContent = card.name;
 
-  //присваиваем значения линку и тексту карточки
-  function cardData () {
-    imagePopupImage.src = card.link;
-    imagePopupImage.alt = card.name;
-    imagePopupText.textContent = card.name;
-    popupOpened(imagePopup);
-  };
-
-  //слушатели на кнопку удаления карточки и 
-  elementButtonDelete.addEventListener('click', () => {
-    cardElement.remove();
-  });
-  elementLikeButton.addEventListener('click', (evt) => {
-    evt.target.classList.toggle('element__button-like_active');
-  });
+  //слушатель для лайка карточки
+  cardElement.addEventListener('click', likeCard);
+  //слушатель для удаления карточки
+  cardElement.addEventListener('click', deleteCard);
   //слушатель для открытия попапа с картинкой
   elementImage.addEventListener('click', cardData);
 
@@ -134,6 +121,32 @@ function renderCard(card) {
 const addCard = (card, cardContainer) => {
   const newCard = renderCard(card);
   cardContainer.prepend(newCard);
+}
+
+//присваиваем значения линку и тексту карточки
+function cardData () {
+  imagePopupImage.src = card.link;
+  imagePopupImage.alt = card.name;
+  imagePopupText.textContent = card.name;
+  popupOpened(imagePopup);
+};
+
+//функция лайка карточки
+function likeCard (evt) {
+  if (evt.target.classList.contains('element__button-like')) {
+    evt.target.classList.toggle('element__button-like_active')
+  }
+}
+
+//функция удаления карточки
+function deleteCard (evt) {
+  evt.preventDefault();
+  const card = evt.currentTarget;
+  if (evt.target.classList.contains('element__button-delete')) {
+    card.removeEventListener('click', deleteCard);
+    card.removeEventListener('click', likeCard);
+    card.remove();
+  }
 }
 
 //функция передачи заполненной информации для добавления новой карточки
@@ -153,7 +166,6 @@ function addFormSubmitHandler (evt) {
 initialCards.forEach((newCard) => {
   addCard(newCard, cardList);
 });
-
 
 //слушатели для для попапа с изменением имени профиля
 openProfilePopup.addEventListener('click', editProfilePopup);

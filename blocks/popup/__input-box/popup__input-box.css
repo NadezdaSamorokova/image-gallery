@@ -7,3 +7,7 @@
     box-sizing: border-box;
     border: none;
 }
+
+.popup__input-box:first-child {
+    margin: 0 0 13px 0;
+}

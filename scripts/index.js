@@ -157,6 +157,11 @@ function addFormSubmitHandler (evt) {
     name: addPopupTitleInput.value
   };
 
+//деактивируем кнопку добавления при открытии формы
+  const submitPopupButton = addPopup.querySelector('.popup__submit-button');
+  submitPopupButton.classList.add('popup__submit-button_disabled');
+  submitPopupButton.setAttribute('disabled', 'disabled');
+
   addCard(addPopupInput, cardList);
   imageFormElement.reset();
   popupClosed(addPopup);

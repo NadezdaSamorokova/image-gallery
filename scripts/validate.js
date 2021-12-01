@@ -21,7 +21,6 @@ function addListenersToForm(form) {
 
     inputs.forEach(addListenersToInput);
 
-    form.addEventListener('submit', handleSubmit);
     form.addEventListener('input', handleFormInput);
     setSubmitButtonState(form);
 }
@@ -39,19 +38,7 @@ function setSubmitButtonState (form) {
     button.classList.toggle(config.inactiveButtonClass, !form.checkValidity());
 }
 
-//функция обработки каждого элемента поля ввода в формах
-function handleSubmit (evt) {
-    evt.preventDefault();
-    const form = evt.target;
-    const data = Array.from(form.querySelectorAll(config.inputSelector)).reduce((input, sum)=>{
-        sum[input.name] = input.value;
-        return sum;
-    }, {})
-
-    return data;
-}
-
-//функция слущатель для поля ввода
+//функция слушатель для поля ввода
 function addListenersToInput(input) {
     input.addEventListener('input', handleFieldValidation);
 }

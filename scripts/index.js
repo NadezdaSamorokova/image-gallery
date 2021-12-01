@@ -30,7 +30,7 @@ const initialCards = [
 const profilePopup = document.querySelector('.popup_type_edit');
 const openProfilePopup = document.querySelector('.profile-info__edit-button');
 const closeProfilePopup = profilePopup.querySelector('.popup__close-icon');
-const formElement = profilePopup.querySelector('.popup__form');
+const profileForm = profilePopup.querySelector('.popup__form');
 const nameInput = profilePopup.querySelector('.popup__name');
 const jobInput = profilePopup.querySelector('.popup__occupation');
 const profileName = document.querySelector('.profile-info__name');
@@ -54,14 +54,14 @@ const esc = 'Escape';
 
 
 //функция открытия попапа 
-function popupOpened(popup) {
+function openPopup(popup) {
   popup.classList.add('popup_opened');
   document.addEventListener('mousedown', closePopupOverlay);
   document.addEventListener('keydown', closePopupEscape);
 }
 
 //функция закрытия попапа
-function popupClosed(popup) {
+function closePopup(popup) {
   popup.classList.remove('popup_opened');
   document.removeEventListener('mousedown', closePopupOverlay);
   document.removeEventListener('keydown', closePopupEscape);
@@ -69,17 +69,16 @@ function popupClosed(popup) {
 
 // Функция закрытия попапа по оверлею 
 const closePopupOverlay = function(evt) {
-  const popupOpened = document.querySelector('.popup_opened');
-      if(evt.target === popupOpened) {
-        popupClosed(popupOpened);
-      }
+  if(evt.target.classList.contains('popup_opened')) {
+    closePopup(evt.target);
+  }
 }
 
 // Функция закрытия попапа нажатием на Esc
 const closePopupEscape = function(evt) {
   if(evt.key === esc) {
     const popupOpened = document.querySelector('.popup_opened');
-    popupClosed(popupOpened);
+    closePopup(popupOpened);
   }
 }
 
@@ -87,7 +86,7 @@ const closePopupEscape = function(evt) {
 function editProfilePopup (evt) {
   nameInput.value = profileName.textContent;
   jobInput.value = profileOccupation.textContent;
-  popupOpened(profilePopup);
+  openPopup(profilePopup);
 }
 
 //функция передачи заполненной информации профиля
@@ -95,7 +94,7 @@ function editFormSubmitHandler (evt) {
   evt.preventDefault(); 
   profileName.textContent = nameInput.value;
   profileOccupation.textContent = jobInput.value;
-  popupClosed(profilePopup);
+  closePopup(profilePopup);
 }
 
 //функция для воспроизведения карточки
@@ -112,7 +111,7 @@ function renderCard(card) {
   //слушатель для удаления карточки
   cardElement.addEventListener('click', deleteCard);
   //слушатель для открытия попапа с картинкой
-  elementImage.addEventListener('click', cardData);
+  elementImage.addEventListener('click', () => handleCardClick(card))
 
   return cardElement;
 };
@@ -124,11 +123,11 @@ const addCard = (card, cardContainer) => {
 }
 
 //присваиваем значения линку и тексту карточки
-function cardData () {
+function handleCardClick(card) {
   imagePopupImage.src = card.link;
   imagePopupImage.alt = card.name;
   imagePopupText.textContent = card.name;
-  popupOpened(imagePopup);
+  openPopup(imagePopup);
 };
 
 //функция лайка карточки
@@ -164,7 +163,7 @@ function addFormSubmitHandler (evt) {
 
   addCard(addPopupInput, cardList);
   imageFormElement.reset();
-  popupClosed(addPopup);
+  closePopup(addPopup);
 };
 
 //аргумент для перебора масства
@@ -172,23 +171,23 @@ initialCards.forEach((newCard) => {
   addCard(newCard, cardList);
 });
 
-//слушатели для для попапа с изменением имени профиля
+//слушатели для попапа с изменением имени профиля
 openProfilePopup.addEventListener('click', editProfilePopup);
-formElement.addEventListener('submit', editFormSubmitHandler);
+profileForm.addEventListener('submit', editFormSubmitHandler);
 closeProfilePopup.addEventListener('click',() => {
-  popupClosed(profilePopup);
+  closePopup(profilePopup);
 });
 
-//слушатели для для попапа с добавлением карточки
+//слушатели для попапа с добавлением карточки
 openAddPopup.addEventListener('click', () => {
-  popupOpened(addPopup);
+  openPopup(addPopup);
 });
 imageFormElement.addEventListener('submit', addFormSubmitHandler);
 closeAddPopup.addEventListener('click', () => {
-  popupClosed(addPopup);
+  closePopup(addPopup);
 });
 
 //слушатель для закрытия попапа с картинкой
 closeImagePopup.addEventListener('click', () => {
-  popupClosed(imagePopup);
+  closePopup(imagePopup);
 });

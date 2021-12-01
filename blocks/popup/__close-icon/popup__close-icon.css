@@ -19,15 +19,10 @@
 
 @media (max-width: 590px) {
   .popup__close-icon {
+    background-image: url(../../../images/Close_icon_s.svg);
     top: -36px;
     right: 0;
     width: 20px;
     height: 20px;
-  }
-}
-
-@media (max-width: 320px) {
-  .popup__close-icon {
-    background-image: url(../../../images/Close_icon_s.svg);
   }
 }

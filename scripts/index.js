@@ -1,3 +1,7 @@
+import {Card} from './Card.js';
+
+export {openPopup, closePopup};
+
 //массив с карточками
 const initialCards = [
   {
@@ -43,15 +47,8 @@ const cardList = document.querySelector('.elements__list');
 const openAddPopup = document.querySelector('.profile__add-button');
 const addPopupTitleInput = addPopup.querySelector('.popup__title-text');
 const addPopupLinkInput = addPopup.querySelector('.popup__link');
-//акпкменные для попапа с открытием картинки
-const imagePopup = document.querySelector('.popup_type_image');
-const imagePopupImage = imagePopup.querySelector('.popup__image');
-const imagePopupText = imagePopup.querySelector('.popup__caption');
-const closeImagePopup = imagePopup.querySelector('.popup__close-icon');
 
-const cardTemplate = document.querySelector('#element-template').content.querySelector('.element');
 const esc = 'Escape';
-
 
 //функция открытия попапа 
 function openPopup(popup) {
@@ -97,55 +94,16 @@ function editFormSubmitHandler (evt) {
   closePopup(profilePopup);
 }
 
-//функция для воспроизведения карточки
-function renderCard(card) {
-  const cardElement = cardTemplate.cloneNode(true);
-  const elementImage = cardElement.querySelector('.element__image');
-  const elementTitle = cardElement.querySelector('.element__title');
-  elementImage.src = card.link;
-  elementImage.alt = card.name;
-  elementTitle.textContent = card.name;
 
-  //слушатель для лайка карточки
-  cardElement.addEventListener('click', likeCard);
-  //слушатель для удаления карточки
-  cardElement.addEventListener('click', deleteCard);
-  //слушатель для открытия попапа с картинкой
-  elementImage.addEventListener('click', () => handleCardClick(card))
-
-  return cardElement;
-};
+//аргумент для перебора масства
+initialCards.forEach(function (item) {
+  addCard(item.name, item.link);
+});
 
 //стрелочная функция для добавления карточки
-const addCard = (card, cardContainer) => {
-  const newCard = renderCard(card);
-  cardContainer.prepend(newCard);
-}
-
-//присваиваем значения линку и тексту карточки
-function handleCardClick(card) {
-  imagePopupImage.src = card.link;
-  imagePopupImage.alt = card.name;
-  imagePopupText.textContent = card.name;
-  openPopup(imagePopup);
-};
-
-//функция лайка карточки
-function likeCard (evt) {
-  if (evt.target.classList.contains('element__button-like')) {
-    evt.target.classList.toggle('element__button-like_active')
-  }
-}
-
-//функция удаления карточки
-function deleteCard (evt) {
-  evt.preventDefault();
-  const card = evt.currentTarget;
-  if (evt.target.classList.contains('element__button-delete')) {
-    card.removeEventListener('click', deleteCard);
-    card.removeEventListener('click', likeCard);
-    card.remove();
-  }
+function addCard(name, link) { 
+  const newCard = new Card ('#element-template', name, link);
+  cardList.prepend(newCard.renderCard());
 }
 
 //функция передачи заполненной информации для добавления новой карточки
@@ -161,15 +119,10 @@ function addFormSubmitHandler (evt) {
   submitPopupButton.classList.add('popup__submit-button_disabled');
   submitPopupButton.setAttribute('disabled', 'disabled');
 
-  addCard(addPopupInput, cardList);
+  addCard(addPopupInput.name, addPopupInput.link);
   imageFormElement.reset();
   closePopup(addPopup);
 };
-
-//аргумент для перебора масства
-initialCards.forEach((newCard) => {
-  addCard(newCard, cardList);
-});
 
 //слушатели для попапа с изменением имени профиля
 openProfilePopup.addEventListener('click', editProfilePopup);
@@ -185,9 +138,4 @@ openAddPopup.addEventListener('click', () => {
 imageFormElement.addEventListener('submit', addFormSubmitHandler);
 closeAddPopup.addEventListener('click', () => {
   closePopup(addPopup);
-});
-
-//слушатель для закрытия попапа с картинкой
-closeImagePopup.addEventListener('click', () => {
-  closePopup(imagePopup);
 });

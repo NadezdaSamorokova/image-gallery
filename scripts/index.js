@@ -1,4 +1,5 @@
 import {Card} from './Card.js';
+import {FormValidator} from './FormValidator.js'
 
 export {openPopup, closePopup};
 
@@ -29,6 +30,16 @@ const initialCards = [
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
   }
 ]; 
+
+//объект с классами и селекторами для валидации
+const config = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__submit-button',
+  inactiveButtonClass: 'popup__submit-button_disabled',
+  inputErrorClass: 'popup__input_error',
+  errorClass: 'popup__error_visible'
+};
 
 //переменнные для попапа с изменением имени профиля
 const profilePopup = document.querySelector('.popup_type_edit');
@@ -94,8 +105,7 @@ function editFormSubmitHandler (evt) {
   closePopup(profilePopup);
 }
 
-
-//аргумент для перебора масства
+//аргумент для перебора масства карточек
 initialCards.forEach(function (item) {
   addCard(item.name, item.link);
 });
@@ -124,6 +134,18 @@ function addFormSubmitHandler (evt) {
   closePopup(addPopup);
 };
 
+//Валидация
+const enableValidation = (config) => {
+  const forms = Array.from(document.querySelectorAll(config.formSelector));
+  forms.forEach((form) => {
+    const validateForm = new FormValidator (config, form);
+    validateForm.enableValidation();
+  })
+}
+
+
+
+ 
 //слушатели для попапа с изменением имени профиля
 openProfilePopup.addEventListener('click', editProfilePopup);
 profileForm.addEventListener('submit', editFormSubmitHandler);
@@ -139,3 +161,5 @@ imageFormElement.addEventListener('submit', addFormSubmitHandler);
 closeAddPopup.addEventListener('click', () => {
   closePopup(addPopup);
 });
+
+enableValidation(config);

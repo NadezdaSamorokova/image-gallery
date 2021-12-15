@@ -1,14 +1,12 @@
 import {openPopup, closePopup} from './index.js';
 
-export {Card};
-
 //переменные для попапа с открытием картинки
 const imagePopup = document.querySelector('.popup_type_image');
 const imagePopupImage = imagePopup.querySelector('.popup__image');
 const imagePopupText = imagePopup.querySelector('.popup__caption');
 const closeImagePopup = imagePopup.querySelector('.popup__close-icon');
 
-class Card {
+export class Card {
     constructor(cardSelector, name, link) {
         this._cardSelector = cardSelector;
         this._name = name;

@@ -1,3 +1,4 @@
+//класс с контейнерлм для селекторов валидации
 export class FormValidator {
     constructor(config, validateForm) {
         this._formSelector = config.formSelector;
@@ -9,23 +10,14 @@ export class FormValidator {
         this._validateForm = validateForm;
     }
 
+    //публичный метод класса для осуществления валидации форм
     enableValidation() {
         this._submitButton = this._validateForm.querySelector(this._submitButtonSelector);
         this._inputs = Array.from(this._validateForm.querySelectorAll(this._inputSelector));
         this._setEventListeners();
     }
 
-    _setEventListeners() {
-        this._setSubmitButtonState();
-
-        this._inputs.forEach((input) => {
-            input.addEventListener('input', (evt) => {
-                this._handleFieldValidation(evt);
-                this._setSubmitButtonState();
-            });
-        })
-   };
-
+    //приватный метод проверки валидности поля ввода
     _handleFieldValidation(evt) {
         const element = evt.target;
         element.setCustomValidity('');
@@ -49,14 +41,28 @@ export class FormValidator {
         errorContainer.classList.toggle(this._errorClass, !element.validity.valid);
     }
     
+    //приватный метод добавления или удаления ошибки для поля ввода
     _setSubmitButtonState() {
         this._submitButton.disabled = !this._validateForm.checkValidity();
         this._submitButton.classList.toggle(this._inactiveButtonClass, !this._validateForm.checkValidity());
    }
 
-   resetValidation() {
+    //слушатель для всех полей ввода в проекте
+    _setEventListeners() {
+        this._setSubmitButtonState();
+        
+        this._inputs.forEach((input) => {
+            input.addEventListener('input', (evt) => {
+                this._handleFieldValidation(evt);
+                this._setSubmitButtonState();
+            });
+        });
+    };
+
+    //публичный метод очистки ошибок
+    resetValidation() {
        this._inputs.forEach(input => {
            this._setSubmitButtonState(input);
        });
-   }
+    }
 }

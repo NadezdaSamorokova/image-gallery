@@ -6,13 +6,15 @@ const imagePopupImage = imagePopup.querySelector('.popup__image');
 const imagePopupText = imagePopup.querySelector('.popup__caption');
 const closeImagePopup = imagePopup.querySelector('.popup__close-icon');
 
+//класс вызова карточки
 export class Card {
     constructor(cardSelector, name, link) {
         this._cardSelector = cardSelector;
         this._name = name;
         this._link = link
     }
-
+ 
+    //заполняем шаблон
     _getTemplate() {
         const cardElement = document
         .querySelector(this._cardSelector)
@@ -22,6 +24,7 @@ export class Card {
         return cardElement;
     }
 
+    //открываем попап и задаём значения линку и тексту
     _openPopup() {
         openPopup(imagePopup);
         imagePopupImage.src = this._link;
@@ -29,29 +32,34 @@ export class Card {
         imagePopupText.textContent = this._name;
         closeImagePopup.addEventListener('click', () => {
             closePopup(imagePopup);
-          });
+        });
     }
 
+    //обработчик лайка
+    _handleCardLike() {
+        this._likeButton.classList.toggle('element__button-like_active');
+    }
+
+
+    //удаляем карточку при необходимости
     _deleteCard() {
         this._element.remove();
     }
 
-    _handleCardLike() {
-      this._likeButton.classList.toggle('element__button-like_active');
-    }
-
+    //навешиваем слушатели открытие попапа с карточкой, лайк и удаление карточки
     _setEventListeners() {
       this._elementImage.addEventListener('click', () => {
             this._openPopup();
-        })
+        });
         this._element.querySelector('.element__button-delete').addEventListener('click', () => {
             this._deleteCard();
-        })
+        });
         this._likeButton.addEventListener('click', () => {
             this._handleCardLike();
-        })
+        });
     }
 
+    //публичный метод пересоздания карточки
     renderCard() {
         this._element = this._getTemplate();
 

@@ -134,17 +134,14 @@ function addFormSubmitHandler (evt) {
   closePopup(addPopup);
 };
 
-//Валидация
+//стрелочная функция валидации форм
 const enableValidation = (config) => {
   const forms = Array.from(document.querySelectorAll(config.formSelector));
   forms.forEach((form) => {
     const validateForm = new FormValidator (config, form);
     validateForm.enableValidation();
-  })
+  });
 }
-
-
-
  
 //слушатели для попапа с изменением имени профиля
 openProfilePopup.addEventListener('click', editProfilePopup);
@@ -162,4 +159,5 @@ closeAddPopup.addEventListener('click', () => {
   closePopup(addPopup);
 });
 
+//вызов функции валидации форм
 enableValidation(config);

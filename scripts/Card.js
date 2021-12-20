@@ -1,17 +1,15 @@
-import {openPopup, closePopup} from './index.js';
-
 //переменные для попапа с открытием картинки
 const imagePopup = document.querySelector('.popup_type_image');
 const imagePopupImage = imagePopup.querySelector('.popup__image');
 const imagePopupText = imagePopup.querySelector('.popup__caption');
-const closeImagePopup = imagePopup.querySelector('.popup__close-icon');
 
 //класс вызова карточки
 export class Card {
-    constructor(cardSelector, name, link) {
+    constructor(data, cardSelector, openPopup) {
+        this._name = data.name;
+        this._link = data.link;
         this._cardSelector = cardSelector;
-        this._name = name;
-        this._link = link
+        this._openPopup = openPopup;
     }
  
     //заполняем шаблон
@@ -25,21 +23,17 @@ export class Card {
     }
 
     //открываем попап и задаём значения линку и тексту
-    _openPopup() {
-        openPopup(imagePopup);
+    _handleOpenPopup() {
+        this._openPopup(imagePopup);
         imagePopupImage.src = this._link;
         imagePopupImage.alt = this._name;
         imagePopupText.textContent = this._name;
-        closeImagePopup.addEventListener('click', () => {
-            closePopup(imagePopup);
-        });
     }
 
     //обработчик лайка
     _handleCardLike() {
         this._likeButton.classList.toggle('element__button-like_active');
     }
-
 
     //удаляем карточку при необходимости
     _deleteCard() {
@@ -48,9 +42,9 @@ export class Card {
 
     //навешиваем слушатели открытие попапа с карточкой, лайк и удаление карточки
     _setEventListeners() {
-      this._elementImage.addEventListener('click', () => {
-            this._openPopup();
-        });
+        this._elementImage.addEventListener('click', () => {
+            this._handleOpenPopup();
+        })
         this._element.querySelector('.element__button-delete').addEventListener('click', () => {
             this._deleteCard();
         });

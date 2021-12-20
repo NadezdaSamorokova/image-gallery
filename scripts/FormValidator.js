@@ -20,25 +20,12 @@ export class FormValidator {
     //приватный метод проверки валидности поля ввода
     _handleFieldValidation(evt) {
         const element = evt.target;
-        element.setCustomValidity('');
-        const errorContainer = document.querySelector(`#${element.id}-error`);
-
-        if (element.validity.tooShort || element.validity.tooLong) {
-            element.setCustomValidity('Минимальное количество символов: 2. Длина текста сейчас: 1 символ');
-        }
-
-        if (element.validity.valueMissing) {
-            element.setCustomValidity('Вы пропустили это поле');
-        }
-
-        if (element.type === 'url' && element.validity.typeMismatch) {
-            element.setCustomValidity('Введите адрес сайта');
-        }
+        const errorContainer = this._validateForm.querySelector(`#${element.id}-error`);
 
         errorContainer.textContent = element.validationMessage;
 
         element.classList.toggle(this._inputErrorClass, !element.validity.valid); 
-        errorContainer.classList.toggle(this._errorClass, !element.validity.valid);
+        element.classList.toggle(this._errorClass, !element.validity.valid);
     }
     
     //приватный метод добавления или удаления ошибки для поля ввода
@@ -61,8 +48,13 @@ export class FormValidator {
 
     //публичный метод очистки ошибок
     resetValidation() {
-       this._inputs.forEach(input => {
-           this._setSubmitButtonState(input);
-       });
+        this._setSubmitButtonState();
+        
+        this._inputs.forEach((inputElement) => {
+            const errorInput = this._validateForm.querySelector(`#${inputElement.id}-error`);
+            inputElement.classList.remove(this._inputErrorClass);
+            errorInput.classList.remove(this._errorClass);
+            errorInput.textContent = '';
+        });
     }
 }

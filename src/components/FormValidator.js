@@ -1,5 +1,5 @@
 //класс с контейнерлм для селекторов валидации
-export class FormValidator {
+export default class FormValidator {
     constructor(config, validateForm) {
         this._formSelector = config.formSelector;
         this._inputSelector = config.inputSelector;

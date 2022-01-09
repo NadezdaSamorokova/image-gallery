@@ -1,15 +1,10 @@
-//переменные для попапа с открытием картинки
-const imagePopup = document.querySelector('.popup_type_image');
-const imagePopupImage = imagePopup.querySelector('.popup__image');
-const imagePopupText = imagePopup.querySelector('.popup__caption');
-
 //класс вызова карточки
-export class Card {
-    constructor(data, cardSelector, openPopup) {
+export default class Card {
+    constructor(data, cardSelector, handleCardClick) {
         this._name = data.name;
         this._link = data.link;
         this._cardSelector = cardSelector;
-        this._openPopup = openPopup;
+        this._handleCardClick = handleCardClick;
     }
  
     //заполняем шаблон
@@ -20,14 +15,6 @@ export class Card {
         .cloneNode(true);
 
         return cardElement;
-    }
-
-    //открываем попап и задаём значения линку и тексту
-    _handleOpenPopup() {
-        this._openPopup(imagePopup);
-        imagePopupImage.src = this._link;
-        imagePopupImage.alt = this._name;
-        imagePopupText.textContent = this._name;
     }
 
     //обработчик лайка
@@ -42,9 +29,8 @@ export class Card {
 
     //навешиваем слушатели открытие попапа с карточкой, лайк и удаление карточки
     _setEventListeners() {
-        this._elementImage.addEventListener('click', () => {
-            this._handleOpenPopup();
-        })
+        this._elementImage.addEventListener('click', this._handleCardClick);
+        
         this._element.querySelector('.element__button-delete').addEventListener('click', () => {
             this._deleteCard();
         });

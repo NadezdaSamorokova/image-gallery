@@ -5,6 +5,7 @@ import PopupWithImage from '../components/PopupWithImage.js';
 import Section from '../components/Section.js';
 import UserInfo from '../components/UserInfo.js';
 import { initialCards, config } from '../utils/Array.js';
+import '../pages/index.css';
 
 //переменнные для попапа с изменением имени профиля
 const profilePopup = document.querySelector('.popup_type_edit');

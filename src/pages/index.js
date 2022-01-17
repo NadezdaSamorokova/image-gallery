@@ -4,7 +4,7 @@ import PopupWithForm from '../components/PopupWithForm.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import Section from '../components/Section.js';
 import UserInfo from '../components/UserInfo.js';
-import { initialCards, config } from '../utils/Array.js';
+import { initialCards, config } from '../utils/constants.js';
 import '../pages/index.css';
 
 //переменнные для попапа с изменением имени профиля
@@ -19,13 +19,12 @@ const profileOccupation = document.querySelector('.profile-info__occupation');
 const addPopup = document.querySelector('.popup_type_add');
 const imageFormElement = addPopup.querySelector('.popup__form');
 const openAddPopup = document.querySelector('.profile__add-button');
-const addPopupTitleInput = addPopup.querySelector('.popup__title-text');
-const addPopupLinkInput = addPopup.querySelector('.popup__link');
 
 //переменные для попапа с открытием картинки
-const imagePopup = document.querySelector('.popup_type_image');
-
-const cardList = document.querySelector('.elements__list');
+const imagePopupSelector = '.popup_type_image';
+const addPopupSelector = '.popup_type_add';
+const editPopupSelector = '.popup_type_edit';
+const cardList = '.elements__list';
 
 const formValidators = {}
 
@@ -39,7 +38,9 @@ const enableValidation = (config) => {
   });
 }
 
-const openPopupWithImage = new PopupWithImage(imagePopup);
+const openPopupWithImage = new PopupWithImage(imagePopupSelector);
+openPopupWithImage.setEventListeners();
+
 const userInfo = new UserInfo({ profileName, profileOccupation })
 
 //функция для открытия попапа с карточкой
@@ -59,30 +60,28 @@ const cardsList = new Section ({
     const cardElement = newCard.renderCard();
     return cardElement;
   },
-}, 
-cardList);
+}, cardList);
+
 cardsList.renderItems();
 
 //функция передачи заполненной информации для добавления новой карточки
-const addCardForm = new PopupWithForm(addPopup, {
-  handleFormSubmit: () => {
-    const addPopupInput = {
-        link: addPopupLinkInput.value,
-        name: addPopupTitleInput.value
-    }
-    cardsList.addItem(addPopupInput);
+const addCardForm = new PopupWithForm(addPopupSelector, {
+  handleFormSubmit: (data) => {
+    cardsList.addItem(data);
     addCardForm.close();
   }
 });
+
 addCardForm.setEventListeners();
 
 //функция передачи заполненной информации для обновления профиля пользователя
-const editProfileForm = new PopupWithForm(profilePopup, {
+const editProfileForm = new PopupWithForm(editPopupSelector, {
   handleFormSubmit: (data) => {
     userInfo.setUserInfo(data);
     editProfileForm.close();
   },
 });
+
 editProfileForm.setEventListeners();
 
 //функция слушатель формы с добавлением карточки с валидацией
@@ -94,12 +93,10 @@ openAddPopup.addEventListener('click', function () {
 //функция слушатель передачи заполненной информации профиля с валидацией формы
 openProfilePopup.addEventListener('click', function() {
   const data = userInfo.getUserInfo();
-  nameInput.value = data.name;
+  nameInput.value = data.nikname;
   jobInput.value = data.occupation;
   editProfileForm.open(profilePopup);
   formValidators[ profileForm.name ].resetValidation();
 });
-
-openPopupWithImage.setEventListeners();
 
 enableValidation(config);

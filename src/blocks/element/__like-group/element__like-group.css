@@ -1,0 +1,6 @@
+.element__like-group {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    align-content: center;
+}

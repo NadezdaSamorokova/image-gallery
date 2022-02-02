@@ -7,3 +7,9 @@
     box-sizing: border-box;
     border: none;
 }
+
+@media (max-width: 590px) {
+    .popup__input-box {
+        margin: 0 0 0;
+    }
+}

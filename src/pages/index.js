@@ -5,35 +5,11 @@ import PopupWithForm from '../components/PopupWithForm.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import Section from '../components/Section.js';
 import UserInfo from '../components/UserInfo.js';
-import { config } from '../utils/constants.js';
 import PopupConfirmDelete from '../components/PopupConfirmDelete.js';
 import Api from '../components/Api.js';
-
-//переменнные для попапа с изменением имени профиля
-const profilePopup = document.querySelector('.popup_type_edit');
-const openProfilePopup = document.querySelector('.profile-info__edit-button');
-const profileForm = profilePopup.querySelector('.popup__form');
-const nameInput = profilePopup.querySelector('.popup__name');
-const jobInput = profilePopup.querySelector('.popup__occupation');
-const profileName = document.querySelector('.profile-info__name');
-const profileOccupation = document.querySelector('.profile-info__occupation');
-//переменнные для попапа с добавлением картинки
-const addPopup = document.querySelector('.popup_type_add');
-const imageFormElement = addPopup.querySelector('.popup__form');
-const openAddPopup = document.querySelector('.profile__add-button');
-//переменнные для попапа с изменением аватара
-const avatarPopup = document.querySelector('.popup_edit-avatar');
-const avatarForm = avatarPopup.querySelector('.popup__form');
-const profileAvatar = document.querySelector('.profile__avatar');
-const editProfileAvatar = document.querySelector('.profile__avatar-edit');
-
-//переменные для попапа с открытием картинки
-const imagePopupSelector = '.popup_type_image';
-const addPopupSelector = '.popup_type_add';
-const editPopupSelector = '.popup_type_edit';
-const avatarPopupSelector = '.popup_edit-avatar';
-const deleteCardPopup = '.popup_type_delete';
-const cardList = '.elements__list';
+import { config, profilePopup, openProfilePopup, profileForm, nameInput, jobInput, profileName, profileOccupation, 
+  imageFormElement, openAddPopup, avatarForm, profileAvatar, editProfileAvatar, imagePopupSelector, addPopupSelector, 
+  editPopupSelector, avatarPopupSelector, deleteCardPopup, cardList } from '../utils/constants.js';
 
 const formValidators = {};
 
@@ -110,7 +86,7 @@ const addCardForm = new PopupWithForm(addPopupSelector, {
   handleFormSubmit: (dataValues) => {
     api.addNewCard(dataValues)
     .then((data) => {
-      cardsList.addItem(createNewCard(data));
+      cardsList.addNewItem(createNewCard(data));
       addCardForm.close();
     })
     .catch((err) => {

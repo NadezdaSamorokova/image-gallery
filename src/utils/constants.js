@@ -21,7 +21,7 @@ export const addPopup = document.querySelector('.popup_type_add');
 export const imageFormElement = addPopup.querySelector('.popup__form');
 export const openAddPopup = document.querySelector('.profile__add-button');
 //переменнные для попапа с изменением аватара
-export const avatarPopup = document.querySelector('.popup_edit-avatar');
+export const avatarPopup = document.querySelector('.popup_type_avatar');
 export const avatarForm = avatarPopup.querySelector('.popup__form');
 export const profileAvatar = document.querySelector('.profile__avatar');
 export const editProfileAvatar = document.querySelector('.profile__avatar-edit');
@@ -30,6 +30,6 @@ export const editProfileAvatar = document.querySelector('.profile__avatar-edit')
 export const imagePopupSelector = '.popup_type_image';
 export const addPopupSelector = '.popup_type_add';
 export const editPopupSelector = '.popup_type_edit';
-export const avatarPopupSelector = '.popup_edit-avatar';
+export const avatarPopupSelector = '.popup_type_avatar';
 export const deleteCardPopup = '.popup_type_delete';
 export const cardList = '.elements__list';

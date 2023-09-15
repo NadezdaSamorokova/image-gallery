@@ -1,32 +1,34 @@
-# Проект 9: Место
+# Project Places
+## Yandex Practicum
 
-Основной целью проекта является погружение в изучение JavaScript, а также углубления изучения адаптивной вёрстки. Преимущественно как брейкпоинты использованы разрешения 1280px и 590px. Создан попап с возможностью редактирования информации в профиле, попап для добавления картинки и попап для открытия картинки. Также добавлена возможность удаления картинки и функция "Нравится". Реализована валидация форм и полей ввода с кастомными сообщениями об ошибке. Проделан рефакторинг кода методом ООП. Проект собран при помощи Webpack и подключён к API.
+[Project Places] (https://nadezdasamorokova.github.io/mesto/)
 
-### Технологии:
+The main goal of this project is to immerse in to leaning of JavaScript, as well as deepen the knowledge of responsive web design. Resolutions of 1280px and 590px are used as main breakpoints. Were created popups with the ability to edit profile information, for adding a picture and a popup for opening a picture. The ability to delete pictures and the “Like” function have also been added. Validation of forms and input fields with custom error messages has been implemented. The code was refactored using the OOP method. The project is built using Webpack and connected to the API.
 
-* Flexbox-вёрстка
-* Грид-контейнер
-* Флекс-позиционирование
-* Семанитика HTML
+### Technologies:
+
+* Flexbox
+* Grid Layout
+* Semantic HTML
 * @media
 * function
 * .querySelector
 * .addEventListener
-* стрелочные функции
-* метод .forEach
-* метод Array.from
-* работа с объктом
-* приватные и публичные методы работы с классами
-* установлен локальный сервер
+* arrow functions
+* .forEach
+* Array.from
+* Local server implementation
 * webpack
 * babel
 * API
 
-### При разработке были использованы программы:
+### Programs used:
 
 * Visual Studio Code
 * Figma
-* Git Bush
+* Git Bash
 * Node.js
 
-[Место] (https://nadezdasamorokova.github.io/mesto/)
+### Link to a Figma-file:
+
+(https://www.figma.com/file/s5Z9eRP4dZ57FQxLBEUzrg/JavaScript.-Yandex-Mesto?type=design&node-id=0-1&mode=design)

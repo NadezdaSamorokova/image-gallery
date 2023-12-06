@@ -23,7 +23,7 @@ const api = new Api({
   },
 });
 
-//промисы
+//Promise
 const promises = [api.getUserInfo(), api.getCards()]
 Promise.all(promises)
 .then(([userData, items]) => {
@@ -35,11 +35,11 @@ Promise.all(promises)
   console.log(err)
 })
 
-//открытие попапа с картинкой
+//opening Card popup
 const openPopupWithImage = new PopupWithImage(imagePopupSelector);
 openPopupWithImage.setEventListeners();
 
-//пересоздаём картинку
+//render picture
 const createNewCard = (data) => {
   const newCard = new Card({data, userId,
     handleCardClick: () => {
@@ -74,14 +74,14 @@ const createNewCard = (data) => {
    return newCard.renderCard();
 };
 
-//добавляем картинки на страницу
+//adding the picture
 const cardsList = new Section({
   renderer: (item) => {
     cardsList.addItem(createNewCard(item));
   }
 }, cardList);
 
-//функция передачи заполненной информации для добавления новой карточки
+//function for passing filled information to add a new card
 const addCardForm = new PopupWithForm(addPopupSelector, {
   handleFormSubmit: (dataValues) => {
     api.addNewCard(dataValues)
@@ -100,10 +100,10 @@ const addCardForm = new PopupWithForm(addPopupSelector, {
 
 addCardForm.setEventListeners();
 
-//функция с полной информацией о пользователе
+//function with the full information about the user
 const userInfo = new UserInfo({ profileName, profileOccupation, profileAvatar })
 
-//функция передачи заполненной информации для обновления профиля пользователя
+//function for passing filled information to update user profile
 const editProfileForm = new PopupWithForm(editPopupSelector, {
   handleFormSubmit: (data) => {
     api.editProfile(data)
@@ -122,7 +122,7 @@ const editProfileForm = new PopupWithForm(editPopupSelector, {
 
 editProfileForm.setEventListeners();
 
-//функция обновления аватара
+//Avatar update function
 const editAvatarForm = new PopupWithForm(avatarPopupSelector, {
   handleFormSubmit: (dataValues) => {
     api.editAvatar(dataValues)
@@ -141,7 +141,7 @@ const editAvatarForm = new PopupWithForm(avatarPopupSelector, {
 
 editAvatarForm.setEventListeners();
 
-//функция с удаелнием персонализированной картинки 
+//Function to delete the card 
 const deleteCardForm = new PopupConfirmDelete(deleteCardPopup, {
   handleSubmitDelete: (id, element) => {
     api.deleteCard(id)
@@ -157,7 +157,7 @@ const deleteCardForm = new PopupConfirmDelete(deleteCardPopup, {
 });
 deleteCardForm.setEventListeners();
 
-//стрелочная функция валидации форм
+//Arrow function for form validation
 const enableValidation = (config) => {
   const forms = Array.from(document.querySelectorAll(config.formSelector));
   forms.forEach((form) => {
@@ -167,13 +167,13 @@ const enableValidation = (config) => {
   });
 }
 
-//функция слушатель формы с добавлением карточки с валидацией
+//Listener function for form with card addition and validation
 openAddPopup.addEventListener('click', function () {
   addCardForm.open();
   formValidators[ imageFormElement.name ].resetValidation();
 });
 
-//функция слушатель передачи заполненной информации профиля с валидацией формы
+//Listener function for transmitting filled profile information with form validation
 openProfilePopup.addEventListener('click', function() {
   const data = userInfo.getUserInfo();
   nameInput.value = data.nikname;
@@ -182,7 +182,7 @@ openProfilePopup.addEventListener('click', function() {
   formValidators[ profileForm.name ].resetValidation();
 });
 
-//функция слушатель формы с изменением аватара с валидацией
+//Listener function for form with avatar change and validation
 editProfileAvatar.addEventListener('click', function () {
   editAvatarForm.open();
   formValidators[ avatarForm.name ].resetValidation();

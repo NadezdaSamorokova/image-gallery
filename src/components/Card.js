@@ -1,4 +1,4 @@
-//класс вызова карточки
+//Card class
 export default class Card {
     constructor({data, handleCardClick, userId, handleDeleteCard, handleCardLike}, cardSelector) {
         this._name = data.name;
@@ -13,7 +13,7 @@ export default class Card {
         this._handleCardLike = handleCardLike;
     }
  
-    //заполняем шаблон
+    //fill out the template
     _getTemplate() {
         const cardElement = document
         .querySelector(this._cardSelector)
@@ -23,7 +23,7 @@ export default class Card {
         return cardElement;
     }
 
-    //навешиваем слушатели открытие попапа с карточкой, лайк и удаление карточки
+    //Attaching event listeners for opening a popup with a card, liking, and deleting the card
     _setEventListeners() {
         this._elementImage.addEventListener('click', () => {
             this._handleCardClick();
@@ -44,7 +44,7 @@ export default class Card {
         });
     }
 
-    //публичный метод пересоздания карточки
+    //public method for card recreation
     renderCard() {
         this._element = this._getTemplate();
 
@@ -68,7 +68,7 @@ export default class Card {
         return this._element;
     }
 
-    //управление лайками
+    //manageing likes
     _handleLike() {
         if(this._likes.length !== 0) {
             this._element.querySelector('.element__like-counter').textContent = this._likes.length;

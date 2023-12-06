@@ -1,3 +1,4 @@
+//main Popup class for opening and closing every popup on the page
 export default class Popup {
     constructor(popupSelector) {
         this._popup = document.querySelector(popupSelector);

@@ -1,4 +1,4 @@
-//класс с контейнерлм для селекторов валидации
+//class for a form validations
 export default class FormValidator {
     constructor(config, validateForm) {
         this._formSelector = config.formSelector;
@@ -10,14 +10,14 @@ export default class FormValidator {
         this._validateForm = validateForm;
     }
 
-    //публичный метод класса для осуществления валидации форм
+    //public method for performing form validation
     enableValidation() {
         this._submitButton = this._validateForm.querySelector(this._submitButtonSelector);
         this._inputs = Array.from(this._validateForm.querySelectorAll(this._inputSelector));
         this._setEventListeners();
     }
 
-    //приватный метод проверки валидности поля ввода
+    //private method for checking the validity of the input field
     _handleFieldValidation(evt) {
         const element = evt.target;
         const errorContainer = this._validateForm.querySelector(`#${element.id}-error`);
@@ -28,13 +28,13 @@ export default class FormValidator {
         element.classList.toggle(this._errorClass, !element.validity.valid);
     }
     
-    //приватный метод добавления или удаления ошибки для поля ввода
+    //private method for adding or removing an error for an input field
     _setSubmitButtonState() {
         this._submitButton.disabled = !this._validateForm.checkValidity();
         this._submitButton.classList.toggle(this._inactiveButtonClass, !this._validateForm.checkValidity());
    }
 
-    //слушатель для всех полей ввода в проекте
+    //Event listeners for all input fields in the project
     _setEventListeners() {
         this._setSubmitButtonState();
         
@@ -46,7 +46,7 @@ export default class FormValidator {
         });
     };
 
-    //публичный метод очистки ошибок
+    //public method for clearing errors
     resetValidation() {
         this._setSubmitButtonState();
         

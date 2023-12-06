@@ -1,4 +1,4 @@
-//объект с классами и селекторами для валидации
+//Object with classes and selectors for validation
 export const config = {
     formSelector: '.popup__form',
     inputSelector: '.popup__input',
@@ -8,7 +8,7 @@ export const config = {
     errorClass: 'popup__error_visible'
   };
   
-//переменнные для попапа с изменением имени профиля
+//Variables for popup with the user info
 export const profilePopup = document.querySelector('.popup_type_edit');
 export const openProfilePopup = document.querySelector('.profile-info__edit-button');
 export const profileForm = profilePopup.querySelector('.popup__form');
@@ -16,17 +16,19 @@ export const nameInput = profilePopup.querySelector('.popup__name');
 export const jobInput = profilePopup.querySelector('.popup__occupation');
 export const profileName = document.querySelector('.profile-info__name');
 export const profileOccupation = document.querySelector('.profile-info__occupation');
-//переменнные для попапа с добавлением картинки
+
+//Variables for the popup with card adding
 export const addPopup = document.querySelector('.popup_type_add');
 export const imageFormElement = addPopup.querySelector('.popup__form');
 export const openAddPopup = document.querySelector('.profile__add-button');
-//переменнные для попапа с изменением аватара
+
+//Variables for the popup with avatar change
 export const avatarPopup = document.querySelector('.popup_type_avatar');
 export const avatarForm = avatarPopup.querySelector('.popup__form');
 export const profileAvatar = document.querySelector('.profile__avatar');
 export const editProfileAvatar = document.querySelector('.profile__avatar-edit');
 
-//переменные для попапа с открытием картинки
+//Variales for the popup with card opening
 export const imagePopupSelector = '.popup_type_image';
 export const addPopupSelector = '.popup_type_add';
 export const editPopupSelector = '.popup_type_edit';

@@ -1,30 +1,30 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Место</title>
+    <title>Places</title>
 </head>
 <body class="root">
 
     <div class="page">
 
         <header class="header page__container">
-            <img class="logo" src="<%=require('./images/mesto_logo.svg')%>" alt="Место">
+            <img class="logo" src="<%=require('./images/mesto_logo.svg')%>" alt="Place">
         </header>
 
         <main class="content page__container">
             <section class="profile">
                 <div class="profile__avatar-edit">
-                    <img class="profile__avatar" src="<%=require('./images/Avatar.svg')%>" alt="Аватар">
+                    <img class="profile__avatar" src="<%=require('./images/Avatar.svg')%>" alt="Avatar">
                 </div>
                 <div class="profile-info">
                     <div class="profile-info__edit-name">
-                        <h1 class="profile-info__name">Жак-Ив Кусто</h1>
+                        <h1 class="profile-info__name">Jacques-Yves Cousteau</h1>
                         <button class="profile-info__edit-button" type="button"></button>
                     </div>
-                    <p class="profile-info__occupation">Исследователь океана</p>
+                    <p class="profile-info__occupation">Ocean Explorer</p>
                 </div>
                 <button class="profile__add-button" type="button"></button>
             </section>
@@ -36,7 +36,7 @@
         </main>
 
         <footer class="footer page__container">
-            <p class="footer__copyright">&copy; 2021 Mesto Russia</p>
+            <p class="footer__copyright">&copy; 2021 Nadezda Samorokova</p>
         </footer>
     </div>
 
@@ -46,12 +46,12 @@
             <h2 class="popup__title">Edit profile</h2>
             <form class="popup__form" name="popupProfileForm" novalidate>
                 <fieldset class="popup__input-box">
-                    <input class="popup__input popup__name" id="nikname" type="text" name="nikname" minlength="2" maxlength="40" placeholder="Name" value="Жак-Ив Кусто" required>
+                    <input class="popup__input popup__name" id="nikname" type="text" name="nikname" minlength="2" maxlength="40" placeholder="Name" value="Jacques-Yves Cousteau" required>
                     <span id="nikname-error" class="popup__error"></span>
-                    <input class="popup__input popup__occupation" id="occupation" type="text" name="occupation" minlength="2" maxlength="200" placeholder="Profession" value="Исследователь океана" required>
+                    <input class="popup__input popup__occupation" id="occupation" type="text" name="occupation" minlength="2" maxlength="200" placeholder="Profession" value="Ocean Explorer" required>
                     <span id="occupation-error" class="popup__error"></span>
                 </fieldset>
-                <button class="popup__submit-button popup__submit-text" type="submit" disabled="true" value="Сохранить">Save</button>               
+                <button class="popup__submit-button popup__submit-text" type="submit" disabled="true" value="Save">Save</button>               
             </form>
         </div>
     </div>
@@ -65,7 +65,7 @@
                     <input class="popup__input popup__link" id="avatar" type="url" name="avatar" placeholder="Link to avatar" value="" required>
                     <span id="avatar-error" class="popup__error"></span>
                 </fieldset>
-                <button class="popup__submit-button popup__submit-text" type="submit" disabled="true" value="Сохранить">Save</button>               
+                <button class="popup__submit-button popup__submit-text" type="submit" disabled="true" value="Save">Save</button>               
             </form>
         </div>
     </div>
@@ -81,7 +81,7 @@
                     <input class="popup__input popup__link" id="link" type="url" name="link" placeholder="Link to the picture" value="" required>
                     <span id="link-error" class="popup__error"></span>
                 </fieldset>
-                <button class="popup__submit-button popup__submit-text" type="submit" disabled="true" value="Создать">Create</button>               
+                <button class="popup__submit-button popup__submit-text" type="submit" disabled="true" value="Create">Create</button>               
             </form>
         </div>
     </div>
@@ -99,7 +99,7 @@
             <button class="popup__close-icon" type="button"></button>
             <form class="popup__form">
                 <h2 class="popup__title popup__title_type_delete">Are sure?</h2>
-                <button class="popup__submit-button popup__submit-text" type="submit" disabled="true" value="Да">Yes</button>
+                <button class="popup__submit-button popup__submit-text" type="submit" disabled="true" value="Yes">Yes</button>
             </form>
         </div>
     </div>

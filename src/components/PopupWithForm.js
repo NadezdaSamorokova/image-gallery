@@ -32,9 +32,9 @@ export default class PopupWithForm extends Popup {
         this._form.reset();
     }
 
-    showLoadingStatus(isLoading, buttonText='Сохранить') {
+    showLoadingStatus(isLoading, buttonText='Save') {
         if(isLoading) {
-            this._button.textContent = 'Сохранение...';
+            this._button.textContent = 'Saving...';
         } else {
             this._button.textContent = buttonText;
         }

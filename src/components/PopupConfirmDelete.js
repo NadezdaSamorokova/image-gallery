@@ -28,9 +28,9 @@ export default class PopupConfirmDelete extends Popup {
         this._cardElement ='';
       }
 
-    showLoadingStatus(isLoading, buttonText='Да') {
+    showLoadingStatus(isLoading, buttonText='Yes') {
         if(isLoading) {
-            this._confirmButton.textContent = 'Удаление...';
+            this._confirmButton.textContent = 'Deleting...';
         } else {
             this._confirmButton.textContent = buttonText;
         }
